@@ -41,6 +41,13 @@ options:
          be used for the following:
        - "Example: rhceph"
      required: true
+   content_url:
+     description:
+       - the path for content of dockpulp repo. It need to start with '/content' and end
+         with $repo_name. It is not required if redirect-url = no in /etc/dockpulp.conf,
+         but we still make it required in this module.
+       - "Example: /content/dist/containers/rhel8/multiarch/containers/redhat-rhceph-rhceph-4-rhel8"
+     required: true
    description:
      description:
        - a description for the dockpulp repo
@@ -393,6 +400,21 @@ def run_module():
 
     check_mode = module.check_mode
     params = module.params
+
+    repo_name = params["repo_name"]
+    content_url = params["content_url"]
+    if not content_url.startswith("/content"):
+        module.fail_json(
+            msg="the content-url needs to start with /content",
+            changed=False,
+            rc=1,
+        )
+    if not content_url.rstrip("/").endswith(repo_name):
+        module.fail_json(
+            msg="the content-url needs to end with %s" % repo_name,
+            changed=False,
+            rc=1,
+        )
 
     try:
         result = ensure_dockpulp_repo(params, check_mode)
