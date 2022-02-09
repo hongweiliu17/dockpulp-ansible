@@ -28,8 +28,8 @@ and three configuration files for dockpulp server
           env: stage
           dockpulp_user: fakeuser
           dockpulp_password: fakeuserPassw0rd
-          repo_name: rhceph-4-rhel8
+          repo_name: rhceph-4-rhel9
           namespace: rhceph
-          platform: rhel9
+          content_url: /content/dist/containers/rhel9/multiarch/containers/redhat-rhceph-rhceph-4-rhel9
           description: This is a test repo for create dockpulp repo
           distribution: ga

@@ -72,6 +72,7 @@ EXAMPLES = """
       dockpulp_password: fakeuserPassw0rd
       repo_name: rhceph-4-rhel8
       namespace: rhceph
+      content_url: /content/dist/containers/rhel8/multiarch/containers/redhat-rhceph-rhceph-4-rhel8
       description: This is a test repo for create dockpulp repo
       distribution: ga
 - name: create dockpulp repositories on rhel9
@@ -82,9 +83,9 @@ EXAMPLES = """
       env: stage
       dockpulp_user: fakeuser
       dockpulp_password: fakeuserPassw0rd
-      repo_name: rhceph-4-rhel8
+      repo_name: rhceph-4-rhel9
       namespace: rhceph
-      platform: rhel9
+      content_url: /content/dist/containers/rhel9/multiarch/containers/redhat-rhceph-rhceph-4-rhel9
       description: This is a test repo for create dockpulp repo
       distribution: ga
 """
@@ -170,12 +171,7 @@ def create_command(env, dockpulp_repo):
     distribution = dockpulp_repo.get("distribution")
     description = dockpulp_repo.get("description")
     namespace = dockpulp_repo.get("namespace")
-    platform = dockpulp_repo.get("platform")
-    path = "/content/dist/containers/%s/multiarch/containers/redhat-%s-%s" % (
-        platform,
-        namespace,
-        repo_name,
-    )
+    content_url = dockpulp_repo.get("content_url")
 
     command = [
         "dock-pulp",
@@ -184,7 +180,7 @@ def create_command(env, dockpulp_repo):
         "create",
         namespace,
         repo_name,
-        path,
+        content_url,
         "--description=%s" % description,
         "--distribution=%s" % distribution,
     ]
@@ -389,7 +385,7 @@ def run_module():
         dockpulp_password=dict(required=True, no_log=True),
         repo_name=dict(required=True),
         namespace=dict(required=True),
-        platform=dict(default='rhel8'),
+        content_url=dict(required=True),
         description=dict(required=True),
         distribution=dict(required=True),
     )
