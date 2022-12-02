@@ -1,5 +1,3 @@
-ansible; python_version>='3.8'
-ansible<5.0; python_version<='3.7'
-lxml
+ansible==2.8.0
 requests
-requests-gssapi
+dictdiffer==0.8.1

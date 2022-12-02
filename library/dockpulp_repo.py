@@ -1,4 +1,3 @@
-"""Module for creating repository in docker pulp server"""
 import subprocess
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.dockpulp_common import diff_settings, describe_changes
