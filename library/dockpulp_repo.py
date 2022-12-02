@@ -28,7 +28,6 @@ options:
    dockpulp_password:
      description:
        - The password to login to docker pulp server
-       - "Example: fakeuserPassw0rd"
    repo_name:
      description:
        - Pulp repo label.
