@@ -1,4 +1,3 @@
-"""Module for creating repository in docker pulp server"""
 import subprocess
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.dockpulp_common import diff_settings, describe_changes
@@ -14,13 +13,15 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = '''
 ---
 module: dockpulp_repo
+
 short_description: Create and update dockpulp repositories in Docker Pulp server
 description:
-   - Create and update CDN repositories within Red Hat's Docker Pulp server.
+- Create and update CDN repositories within Red Hat's Docker Pulp server.
 options:
    env:
      description:
        - The environment to run dock-pulp command, which is configured in /etc/dockpulp.conf
+       - "Example: stage"
    dockpulp_user:
        - The user to login to docker pulp server
    dockpulp_password:
@@ -29,18 +30,21 @@ options:
    repo_name:
      description:
        - Pulp repo label.
+       - "Example: rhceph-4-rhel8"
      required: true
    namespace:
      description:
        - Use like the 'product-line' value in release engineering documentation.
          Final value will have redhat prepended where necessary. This entry will
-         be used for the following:
+         be used for the following
+       - "Example: rhceph"
      required: true
    content_url:
      description:
        - the path for content of dockpulp repo. It need to start with '/content' and end
          with $repo_name. It is not required if redirect-url = no in /etc/dockpulp.conf,
          but we still make it required in this module.
+       - "Example: /content/dist/containers/rhel8/multiarch/containers/redhat-rhceph-rhceph-4-rhel8"
      required: true
    description:
      description:
@@ -53,6 +57,7 @@ options:
    distribution:
      description:
        - The distribution of this dockpulp repo
+       - "Example: tech-preview"
      choices: [ga, tech-preview, tech-preview, beta]
      required: true
 requirements:
