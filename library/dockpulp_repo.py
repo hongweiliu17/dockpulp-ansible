@@ -1,3 +1,4 @@
+"""Module for creating repository in docker pulp server"""
 import subprocess
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.dockpulp_common import diff_settings, describe_changes
@@ -13,7 +14,6 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = '''
 ---
 module: dockpulp_repo
-
 short_description: Create and update dockpulp repositories in Docker Pulp server
 description:
 - Create and update CDN repositories within Red Hat's Docker Pulp server.
@@ -36,7 +36,7 @@ options:
      description:
        - Use like the 'product-line' value in release engineering documentation.
          Final value will have redhat prepended where necessary. This entry will
-         be used for the following
+         be used for the following:
        - "Example: rhceph"
      required: true
    content_url:
