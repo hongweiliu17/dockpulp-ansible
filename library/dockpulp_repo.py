@@ -1,4 +1,3 @@
-"""Module for creating repository in docker pulp server"""
 import subprocess
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.dockpulp_common import diff_settings, describe_changes
@@ -11,12 +10,12 @@ ANSIBLE_METADATA = {
 }
 
 
-DOCUMENTATION = """
+DOCUMENTATION = '''
 ---
 module: dockpulp_repo
 short_description: Create and update dockpulp repositories in Docker Pulp server
 description:
-   - Create and update CDN repositories within Red Hat's Docker Pulp server.
+- Create and update CDN repositories within Red Hat's Docker Pulp server.
 options:
    env:
      description:
@@ -24,11 +23,9 @@ options:
        - "Example: stage"
    dockpulp_user:
        - The user to login to docker pulp server
-       - "Example: fakeuser"
    dockpulp_password:
      description:
        - The password to login to docker pulp server
-       - "Example: fakeuserPassw0rd"
    repo_name:
      description:
        - Pulp repo label.
@@ -66,9 +63,9 @@ requirements:
   - "python >= 3.6"
   - "lxml"
   - "requests-gssapi"
-"""
+'''
 
-EXAMPLES = """
+EXAMPLES = '''
 - name: create dockpulp repositories on rhel8
   hosts: localhost
   tasks:
@@ -95,7 +92,7 @@ EXAMPLES = """
       content_url: /content/dist/containers/rhel9/multiarch/containers/redhat-rhceph-rhceph-4-rhel9
       description: This is a test repo for create dockpulp repo
       distribution: ga
-"""
+'''
 
 DOCK_PULP_TIMEOUT = 120
 
