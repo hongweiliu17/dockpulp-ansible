@@ -11,7 +11,7 @@ ANSIBLE_METADATA = {
 }
 
 
-DOCUMENTATION = """
+DOCUMENTATION = '''
 ---
 module: dockpulp_repo
 short_description: Create and update dockpulp repositories in Docker Pulp server
@@ -66,9 +66,9 @@ requirements:
   - "python >= 3.6"
   - "lxml"
   - "requests-gssapi"
-"""
+'''
 
-EXAMPLES = """
+EXAMPLES = '''
 - name: create dockpulp repositories on rhel8
   hosts: localhost
   tasks:
@@ -95,7 +95,7 @@ EXAMPLES = """
       content_url: /content/dist/containers/rhel9/multiarch/containers/redhat-rhceph-rhceph-4-rhel9
       description: This is a test repo for create dockpulp repo
       distribution: ga
-"""
+'''
 
 DOCK_PULP_TIMEOUT = 120
 
